@@ -11,13 +11,9 @@ public class Sudoku {
 	private static int[][] actionRowCol;
 			
 
-	int currentNum = 1;
+	public static void createSudokuGrid() {
 
-	int currentBlock = 1;
-
-	public static void createSukokuGrid() {
-/*
-		Integer[][] loadedArr = { { 0, 0, 4, 8, 0, 0, 6, 0, 2 },
+		Integer[][] loadedSudoku = { { 0, 0, 4, 8, 0, 0, 6, 0, 2 },
 								  { 9, 5, 0, 0, 0, 7, 8, 4, 3 },
 								  { 8, 3, 0, 4, 9, 2, 0, 5, 0 },
 
@@ -29,7 +25,9 @@ public class Sudoku {
 								  { 5, 0, 3, 7, 6, 0, 0, 8, 0 }, 
 								  { 0, 6, 0, 0, 2, 5, 0, 3, 1 } };
 		
-		*/
+
+
+		/*
 		Integer[][] loadedArr = { { 0, 0, 1,  0, 0, 0,  0, 0, 0 },
 				  				  { 0, 0, 2,  0, 3, 0,  0, 0, 4 },
 				  				  { 0, 0, 0,  5, 0, 0,  6, 0, 7 },
@@ -40,7 +38,7 @@ public class Sudoku {
 
 				  				  { 8, 0, 7,  0, 0, 9,  0, 0, 0 },
 				  				  { 4, 0, 0,  0, 6, 0,  3, 0, 0 }, 
-				  				  { 0, 0, 0,  0, 0, 0,  5, 0, 0 } };
+				  				  { 0, 0, 0,  0, 0, 0,  5, 0, 0 } };*/
 		
 
 		Integer[] temp= new Integer[81];
@@ -51,8 +49,8 @@ public class Sudoku {
 			temp2[i][1]=0;
 		}
 		Arrays.fill(temp, 0);
-		//Arrays.fill(temp2, Arrays.fill(new Integer[2],0));
-		grid = loadedArr;
+
+		grid = loadedSudoku;
 		actionArray=temp;
 		actionRowCol=temp2;
 	}
@@ -178,7 +176,7 @@ public class Sudoku {
 			diffCol++;
 		}
 		
-		// prima riga
+
 		if(diffRow==0) {
 			for(int i=colStart+diffCol;i<colStart+3;i++) {
 				if(grid[rowStart][i]==0) {
@@ -190,7 +188,7 @@ public class Sudoku {
 			}
 		}
 		
-		// seconda riga
+
 		
 		if(diffRow==0) {
 			for(int i=colStart;i<colStart+3;i++) {
@@ -255,7 +253,7 @@ public class Sudoku {
 						actionRowCol[i][0]=arr[0];
 						actionRowCol[i][1]=arr[1];
 						i++;
-						//Sudoku.printGrid();
+
 					}
 					
 				}else {
@@ -271,7 +269,7 @@ public class Sudoku {
 					i--;
 				}else {
 					
-					// tolgo dal sudoku toRemove
+
 					int rowRemove=actionRowCol[i][0];
 					int colRemove=actionRowCol[i][1];
 					actionRowCol[i][0]=0;
@@ -279,7 +277,7 @@ public class Sudoku {
 					
 					delete(rowRemove,colRemove);
 					actionArray[i]=0;
-					//Sudoku.printGrid();
+
 					int[] arr=firstFromPos(num,block,rowRemove,colRemove);
 					if(arr==null) {
 						i--;
@@ -291,7 +289,7 @@ public class Sudoku {
 						actionRowCol[i][1]=arr[1];
 						forward=true;
 						i++;
-						//Sudoku.printGrid();
+
 					}
 					
 				}
