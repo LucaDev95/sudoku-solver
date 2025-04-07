@@ -9,10 +9,6 @@ This is a simple Sudoku solver that takes a hardcoded unsolved puzzle and prints
 - Once solved, the completed grid is printed to the console.
 
 
-### Notes
-- The numbers `0` in the unsolved Sudoku represent empty cells.
-- The solver fills in these empty cells to generate a valid completed Sudoku grid.
-
 ## Requirements
 
 - Java
@@ -23,36 +19,36 @@ This is a simple Sudoku solver that takes a hardcoded unsolved puzzle and prints
 ### Unsolved sudoku:
 
 ```
------------
-004|800|602
-950|007|843
-830|492|050
------------
-601|039|470
-080|240|309
-340|008|020
------------
-217|304|960
-503|760|080
-060|025|031
------------
++-------+-------+-------+
+|   2   |     7 | 8 3   |
+| 7     |       | 9     |
+|   6   |   5 8 | 4     |
++-------+-------+-------+
+|     3 |       | 2 8   |
+| 9     | 1   5 |     7 |
+|   7 5 |       | 6     |
++-------+-------+-------+
+|     6 | 5 2   |   9   |
+|     7 |       |     8 |
+|   9 1 | 7     |   2   |
++-------+-------+-------+
 
 ```
 
 ### Solved sudoku:
 ```
------------
-174|853|692
-952|617|843
-836|492|157
------------
-621|539|478
-785|246|319
-349|178|526
------------
-217|384|965
-593|761|284
-468|925|731
------------
++-------+-------+-------+
+| 5 2 4 | 6 9 7 | 8 3 1 |
+| 7 3 8 | 2 1 4 | 9 5 6 |
+| 1 6 9 | 3 5 8 | 4 7 2 |
++-------+-------+-------+
+| 6 1 3 | 4 7 9 | 2 8 5 |
+| 9 8 2 | 1 6 5 | 3 4 7 |
+| 4 7 5 | 8 3 2 | 6 1 9 |
++-------+-------+-------+
+| 8 4 6 | 5 2 1 | 7 9 3 |
+| 2 5 7 | 9 4 3 | 1 6 8 |
+| 3 9 1 | 7 8 6 | 5 2 4 |
++-------+-------+-------+
 ```
 
