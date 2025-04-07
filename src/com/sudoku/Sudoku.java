@@ -1,19 +1,17 @@
 package com.sudoku;
 
-import java.util.Arrays;
-
 public class Sudoku {
 
-	private final Integer[][] grid;
+	private final int[][] grid;
 	
-	private Integer[] actionArray=new Integer[81];
+	private final int[] actionArray;
 	
 	private final int[][] actionRowCol;
 
 	private static Sudoku sudoku;
 
 	private Sudoku(){
-		Integer[][] loadedSudoku = { { 0, 0, 4, 8, 0, 0, 6, 0, 2 },
+		 grid =new int[][] { { 0, 0, 4, 8, 0, 0, 6, 0, 2 },
 				{ 9, 5, 0, 0, 0, 7, 8, 4, 3 },
 				{ 8, 3, 0, 4, 9, 2, 0, 5, 0 },
 
@@ -25,19 +23,8 @@ public class Sudoku {
 				{ 5, 0, 3, 7, 6, 0, 0, 8, 0 },
 				{ 0, 6, 0, 0, 2, 5, 0, 3, 1 } };
 
-
-		Integer[] temp= new Integer[81];
-		int[][] temp2 = new int[81][2];
-
-		for(int i=0;i<81;i++) {
-			temp2[i][0]=0;
-			temp2[i][1]=0;
-		}
-		Arrays.fill(temp, 0);
-
-		grid = loadedSudoku;
-		actionArray=temp;
-		actionRowCol=temp2;
+		actionArray=new int[81];
+		actionRowCol=new int[81][2];
 	}
 
 	public static Sudoku getSudokuGrid(){
@@ -68,29 +55,19 @@ public class Sudoku {
 		
 	}
 
-	public boolean checkBlock(int num, int numBlock) {
+	private boolean checkBlock(int num, int numBlock) {
 		int rowStart = (numBlock / 3) * 3;
 		int colStart = (numBlock % 3) * 3;
 
 		for (int i = colStart; i < colStart + 3; i++) {
-			if (grid[rowStart][i] == num) {
-				return true;
-			}
-		}
-		for (int i = colStart; i < colStart + 3; i++) {
-			if (grid[rowStart + 1][i] == num) {
-				return true;
-			}
-		}
-		for (int i = colStart; i < colStart + 3; i++) {
-			if (grid[rowStart + 2][i] == num) {
+			if (grid[rowStart][i] == num || grid[rowStart + 1][i] == num || grid[rowStart + 2][i] == num) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean notInRow(int num, int numRow) {
+	private boolean notInRow(int num, int numRow) {
 		for (int i = 0; i < 9; i++) {
 			if (grid[numRow][i] == num) {
 				return false;
@@ -99,7 +76,7 @@ public class Sudoku {
 		return true;
 	}
 
-	public boolean notInColumn(int num, int numCol) {
+	private boolean notInColumn(int num, int numCol) {
 		for (int i = 0; i < 9; i++) {
 			if (grid[i][numCol] == num) {
 				return false;
@@ -116,12 +93,12 @@ public class Sudoku {
 	private int[] firstAvailable(int num,int block) {
 		int rowStart = (block / 3) * 3;
 		int colStart = (block % 3) * 3;
+
 		
 		for(int i=colStart;i<colStart+3;i++) {
 			if(grid[rowStart][i]==0) {
 				if(notInRow(num,rowStart) && notInColumn(num,i)) {
-					int[] arr= {rowStart,i};
-					return arr;
+					return new int[]{rowStart,i};
 				}
 			}
 		}
@@ -129,8 +106,7 @@ public class Sudoku {
 		for(int i=colStart;i<colStart+3;i++) {
 			if(grid[rowStart+1][i]==0) {
 				if(notInRow(num,rowStart+1) && notInColumn(num,i)) {
-					int[] arr= {rowStart+1,i};
-					return arr;
+					return new int[]{rowStart+1,i};
 				}
 			}
 		}
@@ -138,8 +114,7 @@ public class Sudoku {
 		for(int i=colStart;i<colStart+3;i++) {
 			if(grid[rowStart+2][i]==0) {
 				if(notInRow(num,rowStart+2) && notInColumn(num,i)) {
-					int[] arr= {rowStart+2,i};
-					return arr;
+					return new int[]{rowStart+2,i};
 				}
 			}
 		}
@@ -169,8 +144,7 @@ public class Sudoku {
 			for(int i=colStart+diffCol;i<colStart+3;i++) {
 				if(grid[rowStart][i]==0) {
 					if(notInRow(num,rowStart) && notInColumn(num,i)) {
-						int[] arr= {rowStart,i};
-						return arr;
+						return new int[]{rowStart,i};
 					}
 				}
 			}
@@ -182,8 +156,7 @@ public class Sudoku {
 			for(int i=colStart;i<colStart+3;i++) {
 				if(grid[rowStart+1][i]==0) {
 					if(notInRow(num,rowStart+1) && notInColumn(num,i)) {
-						int[] arr= {rowStart+1,i};
-						return arr;
+						return new int[]{rowStart+1,i};
 					}
 				}
 			}
@@ -191,8 +164,7 @@ public class Sudoku {
 			for(int i=colStart+diffCol;i<colStart+3;i++) {
 				if(grid[rowStart+1][i]==0) {
 					if(notInRow(num,rowStart+1) && notInColumn(num,i)) {
-						int[] arr= {rowStart+1,i};
-						return arr;
+						return new int[]{rowStart+1,i};
 					}
 				}
 			}
@@ -202,8 +174,7 @@ public class Sudoku {
 			for(int i=colStart;i<colStart+3;i++) {
 				if(grid[rowStart+2][i]==0) {
 					if(notInRow(num,rowStart+2) && notInColumn(num,i)) {
-						int[] arr= {rowStart+2,i};
-						return arr;
+						return new int[]{rowStart+2,i};
 					}
 				}
 			}
@@ -211,8 +182,7 @@ public class Sudoku {
 			for(int i=colStart+diffCol;i<colStart+3;i++) {
 				if(grid[rowStart+2][i]==0) {
 					if(notInRow(num,rowStart+2) && notInColumn(num,i)) {
-						int[] arr= {rowStart+2,i};
-						return arr;
+						return new int[]{rowStart+2,i};
 					}
 				}
 			}
